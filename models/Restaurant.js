@@ -3,7 +3,7 @@ const sequelize = require('../config/connection');
 
 class Restaurant extends Model {}
 
-Review.init(
+Restaurant.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -15,15 +15,14 @@ Review.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    location: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    contact: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
+    reviews: {
+      type: DataTypes.INTEGER,
+      foreignKey: true,
+      references: {
+        model: 'review',
+        key: 'id'
+      }
+    }
       },
 
   {
